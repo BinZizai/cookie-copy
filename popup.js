@@ -152,6 +152,10 @@ document.getElementById('pasteCookies').addEventListener('click', async () => {
     if (successCount > 0) {
       showMessage(`成功粘贴 ${successCount} 个 Cookie！${failCount > 0 ? ` (${failCount} 个失败)` : ''}`);
       
+      // 清空显示区域
+      document.getElementById('cookieList').innerHTML = '';
+      chrome.storage.local.set({ copiedCookies: [] });
+      
       // 延迟 500ms 后刷新页面，确保 Cookie 已经设置完成
       setTimeout(async () => {
         await refreshCurrentPage();
@@ -209,6 +213,10 @@ document.getElementById('forcePasteCookies').addEventListener('click', async () 
     if (successCount > 0) {
       showMessage(`强制粘贴成功 ${successCount} 个 Cookie！${failCount > 0 ? ` (${failCount} 个失败)` : ''}`);
       
+      // 清空显示区域
+      document.getElementById('cookieList').innerHTML = '';
+      chrome.storage.local.set({ copiedCookies: [] });
+      
       // 延迟 500ms 后刷新页面
       setTimeout(async () => {
         await refreshCurrentPage();
@@ -224,6 +232,9 @@ document.getElementById('forcePasteCookies').addEventListener('click', async () 
 
 // 显示 Storage 信息
 function displayStorage(storage) {
+  if (!storage.localStorage && !storage.sessionStorage) {
+    return;
+  }
   const cookieList = document.getElementById('cookieList');
   const storageDiv = document.createElement('div');
   storageDiv.className = 'storage-info';
@@ -358,6 +369,10 @@ document.getElementById('pasteStorage').addEventListener('click', async () => {
     
     if (result.successCount > 0) {
       showMessage(`成功粘贴 ${result.successCount} 个 Storage 项！${result.failCount > 0 ? ` (${result.failCount} 个失败)` : ''}`);
+      
+      // 清空显示区域
+      document.getElementById('cookieList').innerHTML = '';
+      chrome.storage.local.set({ copiedStorage: {} });
       
       // 延迟 500ms 后刷新页面
       setTimeout(async () => {
