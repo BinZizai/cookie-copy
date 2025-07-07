@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🚀Cookie复制助手</h1>
+    </div>
+    <div class="buttons">
+      <button id="copyCookies">复制 Cookie</button>
+      <button id="pasteCookies">粘贴 Cookie</button>
+      <button id="copyStorage" class="storage-button">复制 Storage</button>
+      <button id="pasteStorage" class="storage-button">粘贴 Storage</button>
+      <button id="forcePasteCookies" class="force-button">强制粘贴</button>
+    </div>
+    
+    <div class="info">
+      <p>本地域名：ip、localhost、*.dev、*.test、*.local ...</p>
+      <p>如果普通粘贴失败，可以尝试"强制粘贴"</p>
+    </div>
+    
+    <div id="cookieList" class="cookie-list"></div>
+    
+    <div id="message" class="message"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 
